@@ -29,6 +29,7 @@ export interface IPropertiesOptions {
     readonly externalStyles?: string;
     readonly styles?: IStylesOptions;
     readonly numbering?: INumberingOptions;
+    readonly externalNumbering?: string;
     readonly footnotes?: Paragraph[];
     readonly hyperlinks?: {
         readonly [key: string]: IInternalHyperlinkDefinition | IExternalHyperlinkDefinition;

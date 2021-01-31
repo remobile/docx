@@ -112,7 +112,7 @@ export class Compiler {
                 path: "docProps/core.xml",
             },
             Numbering: {
-                data: xml(this.formatter.format(file.Numbering, file), prettify),
+                data: file.externalNumbering ? file.externalNumbering : xml(this.formatter.format(file.Numbering, file), prettify),
                 path: "word/numbering.xml",
             },
             FileRelationships: {

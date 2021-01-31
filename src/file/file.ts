@@ -54,6 +54,7 @@ export class File {
     private readonly docRelationships: Relationships;
     private readonly coreProperties: CoreProperties;
     private readonly numbering: Numbering;
+    public readonly externalNumbering: string;
     private readonly media: Media;
     private readonly fileRelationships: Relationships;
     private readonly footNotes: FootNotes;
@@ -73,13 +74,6 @@ export class File {
         sections: ISectionOptions[] = [],
     ) {
         this.coreProperties = new CoreProperties(options);
-        this.numbering = new Numbering(
-            options.numbering
-                ? options.numbering
-                : {
-                      config: [],
-                  },
-        );
         this.docRelationships = new Relationships();
         this.fileRelationships = new Relationships();
         this.appProperties = new AppProperties();
@@ -114,6 +108,15 @@ export class File {
         } else {
             const stylesFactory = new DefaultStylesFactory();
             this.styles = new Styles(stylesFactory.newInstance());
+        }
+
+        if (options.externalNumbering) {
+            this.externalNumbering = options.externalNumbering;
+            this.numbering = new Numbering({ config: [] });
+        } else if (options.numbering) {
+            this.numbering = new Numbering(options.numbering);
+        } else {
+            this.numbering = new Numbering({ config: [] });
         }
 
         this.addDefaultRelationships();

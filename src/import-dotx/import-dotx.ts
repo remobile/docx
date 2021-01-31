@@ -41,6 +41,7 @@ export interface IDocumentTemplate {
     readonly headers: IDocumentHeader[];
     readonly footers: IDocumentFooter[];
     readonly styles: string;
+    readonly numbering: string;
     readonly titlePageIsDefined: boolean;
     readonly media: Media;
 }
@@ -62,6 +63,7 @@ export class ImportDotx {
             footers: await this.createFooters(zipContent, documentRefs, documentRelationships, media, documentRefs.headers.length),
             currentRelationshipId: documentRefs.footers.length + documentRefs.headers.length,
             styles: await zipContent.files["word/styles.xml"].async("text"),
+            numbering: await zipContent.files["word/numbering.xml"].async("text"),
             titlePageIsDefined: this.checkIfTitlePageIsDefined(documentContent),
             media: media,
         };

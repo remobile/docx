@@ -47,9 +47,10 @@ export class Numbering extends XmlComponent {
 
         this.nextId = 0;
 
+        // 10: ●  11: ○  12: ■  13: ►  14: ➤  15: ✦  16: ◆  17: ◈  18: ▣
         const abstractNumbering = this.createAbstractNumbering([
             {
-                level: 0,
+                level: 10,
                 format: "bullet",
                 text: "\u25CF",
                 alignment: AlignmentType.LEFT,
@@ -60,7 +61,7 @@ export class Numbering extends XmlComponent {
                 },
             },
             {
-                level: 1,
+                level: 11,
                 format: "bullet",
                 text: "\u25CB",
                 alignment: AlignmentType.LEFT,
@@ -71,7 +72,7 @@ export class Numbering extends XmlComponent {
                 },
             },
             {
-                level: 2,
+                level: 12,
                 format: "bullet",
                 text: "\u25A0",
                 alignment: AlignmentType.LEFT,
@@ -82,9 +83,9 @@ export class Numbering extends XmlComponent {
                 },
             },
             {
-                level: 3,
+                level: 13,
                 format: "bullet",
-                text: "\u25CF",
+                text: "\u25BA",
                 alignment: AlignmentType.LEFT,
                 style: {
                     paragraph: {
@@ -93,9 +94,9 @@ export class Numbering extends XmlComponent {
                 },
             },
             {
-                level: 4,
+                level: 14,
                 format: "bullet",
-                text: "\u25CB",
+                text: "\u27A4",
                 alignment: AlignmentType.LEFT,
                 style: {
                     paragraph: {
@@ -104,9 +105,9 @@ export class Numbering extends XmlComponent {
                 },
             },
             {
-                level: 5,
+                level: 15,
                 format: "bullet",
-                text: "\u25A0",
+                text: "\u2726",
                 alignment: AlignmentType.LEFT,
                 style: {
                     paragraph: {
@@ -115,9 +116,9 @@ export class Numbering extends XmlComponent {
                 },
             },
             {
-                level: 6,
+                level: 16,
                 format: "bullet",
-                text: "\u25CF",
+                text: "\u25C6",
                 alignment: AlignmentType.LEFT,
                 style: {
                     paragraph: {
@@ -126,9 +127,9 @@ export class Numbering extends XmlComponent {
                 },
             },
             {
-                level: 7,
+                level: 17,
                 format: "bullet",
-                text: "\u25CF",
+                text: "\u25C8",
                 alignment: AlignmentType.LEFT,
                 style: {
                     paragraph: {
@@ -137,9 +138,9 @@ export class Numbering extends XmlComponent {
                 },
             },
             {
-                level: 8,
+                level: 18,
                 format: "bullet",
-                text: "\u25CF",
+                text: "\u25A3",
                 alignment: AlignmentType.LEFT,
                 style: {
                     paragraph: {

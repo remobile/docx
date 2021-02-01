@@ -1,5 +1,4 @@
 // http://officeopenxml.com/WPnumbering.php
-import { AlignmentType } from "file/paragraph";
 import { IXmlableObject, XmlComponent } from "file/xml-components";
 
 import { DocumentAttributes } from "../document/document-attributes";
@@ -52,34 +51,6 @@ export class Numbering extends XmlComponent {
             }
         }
         this.nextId = id;
-
-        //  7: ■  8: ◆
-        const abstractNumbering = this.createAbstractNumbering([
-            {
-                level: 7,
-                format: "bullet",
-                text: "\u25A0",
-                alignment: AlignmentType.LEFT,
-                style: {
-                    paragraph: {
-                        indent: { left: 720, hanging: 360 },
-                    },
-                },
-            },
-            {
-                level: 8,
-                format: "bullet",
-                text: "\u25C6",
-                alignment: AlignmentType.LEFT,
-                style: {
-                    paragraph: {
-                        indent: { left: 1080, hanging: 360 },
-                    },
-                },
-            },
-        ]);
-
-        this.createConcreteNumbering(abstractNumbering);
 
         for (const con of options.config) {
             const currentAbstractNumbering = this.createAbstractNumbering(con.levels);

@@ -21,7 +21,7 @@ export class Numbering extends XmlComponent {
     private readonly abstractNumbering: AbstractNumbering[] = [];
     private readonly concreteNumbering: ConcreteNumbering[] = [];
 
-    constructor(options: INumberingOptions) {
+    constructor(options: INumberingOptions, initNumberings) {
         super("w:numbering");
         this.root.push(
             new DocumentAttributes({
@@ -45,14 +45,20 @@ export class Numbering extends XmlComponent {
             }),
         );
 
-        this.nextId = 0;
+        let id = 0;
+        if (initNumberings !== undefined) {
+            for (; id<initNumberings.length; id++) {
+                this.root.push(initNumberings[id]);
+            }
+        }
+        this.nextId = id;
 
-        // 10: ●  11: ○  12: ■  13: ►  14: ➤  15: ✦  16: ◆  17: ◈  18: ▣
+        //  7: ■  8: ◆
         const abstractNumbering = this.createAbstractNumbering([
             {
-                level: 10,
+                level: 7,
                 format: "bullet",
-                text: "\u25CF",
+                text: "\u25A0",
                 alignment: AlignmentType.LEFT,
                 style: {
                     paragraph: {
@@ -61,90 +67,13 @@ export class Numbering extends XmlComponent {
                 },
             },
             {
-                level: 11,
-                format: "bullet",
-                text: "\u25CB",
-                alignment: AlignmentType.LEFT,
-                style: {
-                    paragraph: {
-                        indent: { left: 1440, hanging: 360 },
-                    },
-                },
-            },
-            {
-                level: 12,
-                format: "bullet",
-                text: "\u25A0",
-                alignment: AlignmentType.LEFT,
-                style: {
-                    paragraph: {
-                        indent: { left: 2160, hanging: 360 },
-                    },
-                },
-            },
-            {
-                level: 13,
-                format: "bullet",
-                text: "\u25BA",
-                alignment: AlignmentType.LEFT,
-                style: {
-                    paragraph: {
-                        indent: { left: 2880, hanging: 360 },
-                    },
-                },
-            },
-            {
-                level: 14,
-                format: "bullet",
-                text: "\u27A4",
-                alignment: AlignmentType.LEFT,
-                style: {
-                    paragraph: {
-                        indent: { left: 3600, hanging: 360 },
-                    },
-                },
-            },
-            {
-                level: 15,
-                format: "bullet",
-                text: "\u2726",
-                alignment: AlignmentType.LEFT,
-                style: {
-                    paragraph: {
-                        indent: { left: 4320, hanging: 360 },
-                    },
-                },
-            },
-            {
-                level: 16,
+                level: 8,
                 format: "bullet",
                 text: "\u25C6",
                 alignment: AlignmentType.LEFT,
                 style: {
                     paragraph: {
-                        indent: { left: 5040, hanging: 360 },
-                    },
-                },
-            },
-            {
-                level: 17,
-                format: "bullet",
-                text: "\u25C8",
-                alignment: AlignmentType.LEFT,
-                style: {
-                    paragraph: {
-                        indent: { left: 5760, hanging: 360 },
-                    },
-                },
-            },
-            {
-                level: 18,
-                format: "bullet",
-                text: "\u25A3",
-                alignment: AlignmentType.LEFT,
-                style: {
-                    paragraph: {
-                        indent: { left: 6480, hanging: 360 },
+                        indent: { left: 1080, hanging: 360 },
                     },
                 },
             },

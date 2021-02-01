@@ -17,6 +17,7 @@ import { Footer, Header } from "./header";
 import { HeaderWrapper, IDocumentHeader } from "./header-wrapper";
 import { Media } from "./media";
 import { Numbering } from "./numbering";
+import { ExternalNumberingFactory } from "./numbering/external-numbering-factory";
 import { Hyperlink, HyperlinkRef, HyperlinkType, Paragraph } from "./paragraph";
 import { Relationships } from "./relationships";
 import { TargetModeType } from "./relationships/relationship/relationship";
@@ -54,7 +55,6 @@ export class File {
     private readonly docRelationships: Relationships;
     private readonly coreProperties: CoreProperties;
     private readonly numbering: Numbering;
-    public readonly externalNumbering: string;
     private readonly media: Media;
     private readonly fileRelationships: Relationships;
     private readonly footNotes: FootNotes;
@@ -110,14 +110,12 @@ export class File {
             this.styles = new Styles(stylesFactory.newInstance());
         }
 
+        let initNumberings;
         if (options.externalNumbering) {
-            this.externalNumbering = options.externalNumbering;
-            this.numbering = new Numbering({ config: [] });
-        } else if (options.numbering) {
-            this.numbering = new Numbering(options.numbering);
-        } else {
-            this.numbering = new Numbering({ config: [] });
+            const numbersFactory = new ExternalNumberingFactory();
+            initNumberings = numbersFactory.newInstance(options.externalNumbering);
         }
+        this.numbering = new Numbering(options.numbering || { config: [] }, initNumberings);
 
         this.addDefaultRelationships();
 
